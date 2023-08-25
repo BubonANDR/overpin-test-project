@@ -22,7 +22,7 @@
 
 
     <div class="container mt-2 rounded" id="crudApp">
-        <h1 class="text-center mb-3">Оценка картинки</h1>
+          <h1 class="text-center mb-3">Оценка картинки</h1>
         <div class="row border rounded pt-2 ps-4 bg-light">
             <div class="card col-4 border-0 bg-light pt-2" style="width: 35rem">
                 <img src="./components/pic-1.jpeg" class="card-img-top rounded float-start" alt="..." />
@@ -88,7 +88,7 @@
             commentDate: null,
             captcha: "captcha.php",
             captchaInput: "",
-            test: ""
+            test: "error",
         },
         methods: {
             fetchAllData: function() {
@@ -100,22 +100,24 @@
             },
 
             submitData: function() {
-                if (application.userName != '' && application.userComment != '' &&
-                    application.test != ""
-                ) {
+                if (application.userName != '' && application.userComment != '') {
+                    if (application.test != "error") {
+                        axios.post('action.php', {
+                            action: 'insert',
+                            userName: application.userName,
+                            userComment: application.userComment
+                        }).then(function(response) {
+                            application.fetchAllData();
+                            application.userName = '';
+                            application.userComment = '';
+                            alert(response.data.message);
+                            application.captchaInput = "";
+                            application.changeCaptcha();
+                        });
+                    } else {
+                        alert("Введите верный код с картинки!");
+                    }
 
-                    axios.post('action.php', {
-                        action: 'insert',
-                        userName: application.userName,
-                        userComment: application.userComment
-                    }).then(function(response) {
-                        application.fetchAllData();
-                        application.userName = '';
-                        application.userComment = '';
-                        alert(response.data.message);
-                        application.captchaInput = "";
-                        application.changeCaptcha();
-                    });
                 } else {
                     alert("Заполните все поля!");
                 }
