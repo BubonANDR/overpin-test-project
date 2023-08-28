@@ -1,0 +1,13 @@
+{
+    "require": {
+        "slim/slim": "^3.0",
+        "slim/php-view": "^3.2",
+        "slim/psr7": "^1.6",
+        "lorddashme/php-simple-captcha": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "classes/"
+        }
+    }
+}
