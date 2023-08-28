@@ -16,8 +16,8 @@ $config['db']['dbname'] = "pic_comments_db";
 $app = new \Slim\App(["settings" => $config]);
 $container = $app->getContainer();
 
-//$container['view'] = new \Slim\Views\PhpRenderer("../templates/");
-//$container['view']->setLayout("mainpage.php");
+$container['view'] = new \Slim\Views\PhpRenderer("../templates/");
+
 
 $container['db'] = function ($c) {
     $db = $c['settings']['db'];
@@ -32,6 +32,12 @@ $container['db'] = function ($c) {
 };
 
 $app->get('/', function (Request $request, Response $response) {
+ 
+    $response = $this->view->render($response, "mainpage.php", []);
+    return $response;
+});
+
+$app->get('/comments', function (Request $request, Response $response) {
 
     $actions = new ActionClass($this->db);
     $response = $actions->fetchAll();

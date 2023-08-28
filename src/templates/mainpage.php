@@ -97,7 +97,7 @@
 
         methods: {
             fetchAllData: function() {
-                axios.get('/src/public/index.php')
+                axios.get('/src/public/index.php/comments')
                     .then(function(response) {
                         application.allData = response.data;
                         application.changeCaptcha();
