@@ -22,5 +22,3 @@
    -    Vue JS V-2;
    -    MySQL;     
 
- ## Деплой проекта:
-- ссылка на приложение проекта:  http://bubonandry.temp.swtest.ru/ 
