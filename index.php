@@ -4,7 +4,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use LordDashMe\SimpleCaptcha\Captcha;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/./vendor/autoload.php';
 
 $config['displayErrorDetails'] = true;
 $config['db']['host']   = "localhost";
@@ -16,7 +16,7 @@ $config['db']['dbname'] = "pic_comments_db";
 $app = new \Slim\App(["settings" => $config]);
 $container = $app->getContainer();
 
-$container['view'] = new \Slim\Views\PhpRenderer("../templates/");
+$container['view'] = new \Slim\Views\PhpRenderer("./templates");
 
 
 $container['db'] = function ($c) {

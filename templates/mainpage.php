@@ -97,7 +97,7 @@
 
         methods: {
             fetchAllData: function() {
-                axios.get('/src/public/index.php/comments')
+                axios.get('../index.php/comments')
                     .then(function(response) {
                         application.allData = response.data;
                         application.changeCaptcha();
@@ -108,7 +108,7 @@
 
                 if (application.userName != '' && application.userComment != '') {
                     if (application.captchaInput == application.captchacode) {
-                        axios.post('/src/public/index.php/comment', {
+                        axios.post('../index.php/comment', {
                             name: application.userName,
                             comment: application.userComment
                         }).then(function(response) {
@@ -128,7 +128,7 @@
 
             deleteData: function(id) {
                 if (confirm("Вы точно хотите ударить комментарий?")) {
-                    axios.post('/src/public/index.php/comment', {
+                    axios.post('../index.php/comment', {
                         id: id
                     }).then(function(response) {
                         application.fetchAllData();
@@ -136,7 +136,7 @@
                 }
             },
             changeCaptcha: function() {
-                axios.get('/src/public/index.php/captcha')
+                axios.get('../index.php/captcha')
                     .then(function(response) {
                         application.captcha = response.data.captcha;
                         application.captchacode = response.data.code;
